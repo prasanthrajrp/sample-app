@@ -12,7 +12,7 @@ steps:
   displayName: Login to Docker Hub
   inputs:
     command: login
-    containerRegistry: dockerhub-connection   # your Docker Hub service connection name
+    containerRegistry: dockerhub-connection
 
 # Build Docker Image
 - task: Docker@2
@@ -36,10 +36,9 @@ steps:
       $(Build.BuildId)
     containerRegistry: dockerhub-connection
 
-# Deploy to Kubernetes (sample-app namespace)
+# Deploy to Kubernetes (using kubectl)
 - script: |
     kubectl set image deployment/sample-app \
       sample-app=prasanthrajrp/sample-app:$(Build.BuildId) \
       -n sample-app
   displayName: Deploy to Kubernetes (sample-app namespace)
-
