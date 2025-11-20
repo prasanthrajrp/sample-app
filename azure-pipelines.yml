@@ -36,9 +36,15 @@ steps:
       $(Build.BuildId)
     containerRegistry: dockerhub-connection
 
-# Deploy to Kubernetes (using kubectl)
+# ⚡ APPLY YAML automatically
+- script: |
+    kubectl apply -f k8s/deployment.yaml -n sample-app
+    kubectl apply -f k8s/service.yaml -n sample-app
+  displayName: Apply Kubernetes manifests
+
+# ⚡ Update image to latest build
 - script: |
     kubectl set image deployment/sample-app \
       sample-app=prasanthrajrp/sample-app:$(Build.BuildId) \
       -n sample-app
-  displayName: Deploy to Kubernetes (sample-app namespace)
+  displayName: Update deployment image
