@@ -20,7 +20,7 @@ steps:
   inputs:
     command: build
     Dockerfile: Dockerfile
-    repository: prasanthrajrp/nginx-webapp
+    repository: prasanthrajrp/sample-app
     tags: |
       latest
       $(Build.BuildId)
@@ -30,7 +30,7 @@ steps:
   displayName: Push Docker Image
   inputs:
     command: push
-    repository: prasanthrajrp/nginx-webapp
+    repository: prasanthrajrp/sample-app
     tags: |
       latest
       $(Build.BuildId)
