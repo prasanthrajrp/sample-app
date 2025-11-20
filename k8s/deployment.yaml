@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sample-app
+  namespace: sample-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: sample-app
@@ -13,7 +14,7 @@ spec:
         app: sample-app
     spec:
       containers:
-        - name: sample-app
-          image: prasanthrajrp/sample-app:latest
-          ports:
-            - containerPort: 3000
+      - name: sample-app
+        image: prasanthrajrp/sample-app:latest
+        ports:
+        - containerPort: 80
